@@ -1,43 +1,46 @@
 # LucideBlox
 
-A revival of [frappedevs/lucideblox](https://github.com/frappedevs/lucideblox), powered by my own image-to-Lua conversion tool, [I2B64](https://github.com/solal0/I2B64).
+A revival of [frappedevs/lucideblox](https://github.com/frappedevs/lucideblox), using my own [I2B64](https://github.com/solal0/I2B64) image-to-Lua conversion tool to bring Lucide icons to Roblox.
 
-LucideBlox brings the entire [Lucide](https://lucide.dev/) icon library to Roblox without relying on uploaded Roblox image assets. Each icon is individually stored as a Base64-encoded Lua file and can be loaded on demand using `EditableImage`.
+Instead of storing every icon in a separate Lua file, LucideBlox provides a single Lua file containing the icon library and its helper functions. Load it once, then retrieve icons by name.
 
 ## Features
 
-- Access to the entire Lucide icon library.
-- 64×64 resolution with transparent backgrounds.
-- Recolorable through `ImageColor3`.
-- Individual icon loading without downloading the entire library.
-- No dependency on Roblox asset IDs.
+- The Lucide icon library, converted into Roblox-compatible image content.
+- A single Lua file containing the icons and library functions.
+- Retrieve individual icons by their Lucide name.
+- Transparent backgrounds and recolorable white icons.
+- No need to upload each icon as a Roblox asset.
 
 ## Usage
 
 ```lua
-local Utils = loadstring(game:HttpGet("https://raw.githubusercontent.com/solal0/Luau/refs/heads/main/Tools/Utils.luau"))()
+-- studio
+local LucideBlox = require(game.ReplicatedStorage.LucideBlox)
+local image = LucideBlox.GetImage("settings")
 
-local function GetIcon(Name)
-    return Utils.toImage(loadstring(game:HttpGet("https://raw.githubusercontent.com/solal0/LucideBlox/refs/heads/main/lua/"..Name..".lua"))()).Image
-end
-
-ImageLabel.ImageContent = GetIcon("settings")
+-- other
+local LucideBlox = loadstring(game:HttpGet("https://github.com/solal0/LucideBlox/releases/latest/download/LucideBlox.lua"))()
+local image = LucideBlox.GetImage("settings")
 ```
 
-Browse the [Lucide icon library](https://lucide.dev/icons/) to find available icon names.
+Use the icon's Lucide name in kebab-case. Browse the [Lucide icon library](https://lucide.dev/icons/) to find icon names.
 
-Requires an environment supporting `loadstring`, `game:HttpGet` and `EditableImage`.
+`GetImage` returns Roblox `Content` suitable for `ImageLabel.ImageContent` or `ImageButton.ImageContent`.
+
+The example requires a Luau environment supporting `loadstring`, `game:HttpGet` and `EditableImage`.
 
 ## Updates
 
-LucideBlox aims to stay up to date with Lucide's official releases. I will try to publish an update for every new version of Lucide, keeping the collection synchronized with upstream additions and changes.
+I intend to keep LucideBlox as close to the upstream Lucide project as possible, publishing updates for new Lucide releases rather than maintaining only one fixed version. Update frequency depends on upstream releases and the time needed to convert and publish each version.
 
 ## Credits
 
-- [frappedevs/lucideblox](https://github.com/frappedevs/lucideblox) — Original project and inspiration.
-- [lucide-icons/lucide](https://github.com/lucide-icons/lucide) — Original icon library.
-- [solal0/I2B64](https://github.com/solal0/I2B64) — Image encoding and decoding tool used by this project.
+- [frappedevs/lucideblox](https://github.com/frappedevs/lucideblox) — original project and inspiration.
+- [lucide-icons/lucide](https://github.com/lucide-icons/lucide) — original icon library.
+- [solal0/I2B64](https://github.com/solal0/I2B64) — image-to-Lua conversion tool.
+- [solal0/Luau](https://github.com/solal0/Luau) — image conversion utilities.
 
 ## License
 
-All icons belong to their respective creators and are distributed under the original [Lucide license](https://lucide.dev/license).
+Lucide's icons are distributed under their respective upstream licenses. See the [Lucide license information](https://lucide.dev/license).
