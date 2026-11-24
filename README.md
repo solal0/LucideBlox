@@ -1,15 +1,16 @@
 # LucideBlox
 
-LucideBlox is a collection of [Lucide](https://lucide.dev/) icons converted into Roblox-compatible images using [I2B64](https://github.com/solal0/I2B64).
+A revival of [frappedevs/lucideblox](https://github.com/frappedevs/lucideblox), powered by my own image-to-Lua conversion tool, [I2B64](https://github.com/solal0/I2B64).
 
-Each icon is stored as a Base64-encoded Lua file and can be loaded directly into an `ImageLabel` or `ImageButton` without uploading image assets to Roblox.
+LucideBlox brings the entire [Lucide](https://lucide.dev/) icon library to Roblox without relying on uploaded Roblox image assets. Each icon is individually stored as a Base64-encoded Lua file and can be loaded on demand using `EditableImage`.
 
 ## Features
 
-- 2,104 icons from Lucide v1.79.0
-- 64×64 resolution with transparent backgrounds
-- White icons that can be recolored using `ImageColor3`
-- Load individual icons on demand
+- Access to the entire Lucide icon library.
+- 64×64 resolution with transparent backgrounds.
+- Recolorable through `ImageColor3`.
+- Individual icon loading without downloading the entire library.
+- No dependency on Roblox asset IDs.
 
 ## Usage
 
@@ -23,13 +24,20 @@ end
 ImageLabel.ImageContent = GetIcon("settings")
 ```
 
-Use the original icon name in kebab-case, without the `.lua` extension. Browse the [Lucide icon library](https://lucide.dev/icons/) to find icon names.
+Browse the [Lucide icon library](https://lucide.dev/icons/) to find available icon names.
 
-The example requires a Luau environment supporting `loadstring`, `game:HttpGet` and `EditableImage`.
+Requires an environment supporting `loadstring`, `game:HttpGet` and `EditableImage`.
+
+## Updates
+
+LucideBlox aims to stay up to date with Lucide's official releases. I will try to publish an update for every new version of Lucide, keeping the collection synchronized with upstream additions and changes.
 
 ## Credits
 
-- [Lucide](https://github.com/lucide-icons/lucide) — original icons.
-- [I2B64](https://github.com/solal0/I2B64) — image encoding and decoding.
+- [frappedevs/lucideblox](https://github.com/frappedevs/lucideblox) — Original project and inspiration.
+- [lucide-icons/lucide](https://github.com/lucide-icons/lucide) — Original icon library.
+- [solal0/I2B64](https://github.com/solal0/I2B64) — Image encoding and decoding tool used by this project.
 
-The original icons are distributed under the [Lucide license](https://lucide.dev/license) (ISC, with Feather-derived icons under MIT).
+## License
+
+All icons belong to their respective creators and are distributed under the original [Lucide license](https://lucide.dev/license).
